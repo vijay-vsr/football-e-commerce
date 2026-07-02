@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="VeePoo19 Sports Shop - Secure Elite Checkout" />
+    <title>VeePoo19 Elite | Secure Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=elite_premium">
+    <style>
+        .checkout-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            animation: slideIn 0.6s ease-out;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 850px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .checkout-section {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .address-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .address-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .address-details p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 0.2rem;
+        }
+
+        .edit-btn {
+            background: var(--primary);
+            border: none;
+            color: black;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 900;
+            transition: var(--transition);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .edit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px var(--primary-glow);
+        }
+
+        .payment-options {
+            display: grid;
+            gap: 1.2rem;
+        }
+
+        .payment-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-card:hover {
+            background: rgba(255, 215, 0, 0.05);
+            border-color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .payment-card.active {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .payment-card input {
+            display: none;
+        }
+
+        .payment-card .payment-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+
+        .payment-card img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .payment-card span {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .order-summary-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .summary-total {
+            border-top: 2px solid var(--glass-border);
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .proceed-btn {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 900;
+            background: var(--primary);
+            color: black;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px var(--primary-glow);
+        }
+
+        .proceed-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 50px var(--primary-glow);
+        }
+
+        .address-form-inline {
+            display: none;
+            margin-top: 1.5rem;
+            gap: 1.2rem;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+
+        .address-form-inline.active {
+            display: flex;
+        }
+
+        .address-form-inline input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 1.2rem;
+            border-radius: 14px;
+            color: white;
+            font-size: 1rem;
+            font-family: 'Inter';
+        }
+
+        .address-form-inline input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .item-preview {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .item-preview img {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid var(--glass-border);
+        }
+
+        .item-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            color: white;
+        }
+
+        .item-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="custom-cursor">
+        <div class="antenna"></div>
+        <div class="cursor-internal"></div>
+        <div class="cursor-internal-wheels"></div>
+    </div>
+    <div id="cursor-glow"></div>
+    <header>
+        <div class="header-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <h1 style="cursor: pointer;" onclick="window.location.href='index.html'">VeePoo19 <span
+                        style="font-size: 1rem; color: var(--primary); letter-spacing: 4px; border-left: 2px solid var(--primary); padding-left: 1rem;">ELITE
+                        SHOP</span></h1>
+                <div class="user-profile">
+                    <div class="user-avatar" id="headerAvatar">U</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="checkout-container">
+        <div class="checkout-main">
+            <div class="checkout-section">
+                <div class="section-title">
+                    <span style="font-size: 1.8rem;">📍</span> Delivery Address
+                </div>
+                <div id="addressDisplay" class="address-box">
+                    <div class="address-details">
+                        <h3 id="displayUserName">User Name</h3>
+                        <p id="displayAddress" style="font-size: 1.1rem; color: white;">Please add your delivery address
+                        </p>
+                        <p id="displayPhone" style="margin-top: 0.5rem; font-weight: 600;">Phone: Not set</p>
+                    </div>
+                    <button class="edit-btn" onclick="toggleAddressForm()">Edit Address</button>
+                </div>
+
+                <div id="addressFormInline" class="address-form-inline">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Update Shipping Details</h4>
+                    <input type="text" id="checkoutAddress"
+                        placeholder="Full Address (House No, Street, City, State, PIN)">
+                    <input type="text" id="checkoutPhone" placeholder="Mobile Number">
+                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                        <button class="cta-primary" style="padding: 1rem; flex: 1; font-weight: 900;"
+                            onclick="saveCheckoutAddress()">SAVE ADDRESS</button>
+                        <button class="cta-secondary"
+                            style="padding: 1rem; flex: 1; font-weight: 900; background: rgba(255,255,255,0.05);"
+                            onclick="toggleAddressForm()">CANCEL</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-section">
+                <div class="section-title">
+                    <span style="font-size: 1.8rem;">💳</span> Payment Methods
+                </div>
+                <div class="payment-options">
+                    <div class="payment-card active" onclick="selectPayment(this, 'gpay')">
+                        <input type="radio" name="payment" value="gpay" checked>
+                        <div class="payment-icon">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Pay_Logo_%282020%29.svg/512px-Google_Pay_Logo_%282020%29.svg.png"
+                                alt="GPay">
+                        </div>
+                        <span>Google Pay</span>
+                    </div>
+                    <div class="payment-card" onclick="selectPayment(this, 'phonepe')">
+                        <input type="radio" name="payment" value="phonepe">
+                        <div class="payment-icon">
+                            <img src="https://logolook.net/wp-content/uploads/2023/11/PhonePe-Logo.png" alt="PhonePe">
+                        </div>
+                        <span>PhonePe</span>
+                    </div>
+                    <div class="payment-card" onclick="selectPayment(this, 'paytm')">
+                        <input type="radio" name="payment" value="paytm">
+                        <div class="payment-icon">
+                            <img src="https://logos-world.net/wp-content/uploads/2020/11/Paytm-Logo.png" alt="Paytm">
+                        </div>
+                        <span>Paytm</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="checkout-sidebar">
+            <div class="checkout-section order-summary-sidebar">
+                <div class="section-title" style="font-size: 1.2rem;">Order Summary</div>
+                <div id="orderItemsSummary"></div>
+                <div class="summary-content" style="margin-top: 2rem;">
+                    <div class="summary-row">
+                        <span>Items Subtotal</span>
+                        <span id="summarySubtotal">₹0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping Fee</span>
+                        <span style="color: #4cd137; font-weight: 900;">FREE</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span id="summaryTotal">₹0</span>
+                    </div>
+                </div>
+                <button class="proceed-btn" onclick="processOrder()">Place Order</button>
+                <p
+                    style="text-align: center; color: var(--text-muted); font-size: 0.75rem; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">
+                    🔒 256-bit SSL Secure Checkout
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=elite_v2"></script>
+    <script>
+        let selectedPaymentMethod = 'gpay';
+        const API = typeof API_URL !== 'undefined' ? API_URL : '/api';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!currentUser) {
+                alert('Please login to continue to checkout');
+                window.location.href = 'index.html';
+                return;
+            }
+            if (document.getElementById('headerAvatar')) {
+                document.getElementById('headerAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+            }
+            updateOrderDisplay();
+        });
+
+        function updateOrderDisplay() {
+            document.getElementById('displayUserName').textContent = currentUser.name;
+            const address = currentUser.address && currentUser.address !== 'Not set' ? currentUser.address : 'Please add your delivery address';
+            document.getElementById('displayAddress').textContent = address;
+            document.getElementById('displayPhone').textContent = 'Phone: ' + (currentUser.phone || 'Not set');
+
+            document.getElementById('checkoutAddress').value = (currentUser.address && currentUser.address !== 'Not set') ? currentUser.address : '';
+            document.getElementById('checkoutPhone').value = (currentUser.phone && currentUser.phone !== 'Not set') ? currentUser.phone : '';
+
+            const summaryContainer = document.getElementById('orderItemsSummary');
+            let total = 0;
+
+            if (!cart || cart.length === 0) {
+                summaryContainer.innerHTML = '<p class="text-muted" style="text-align: center; padding: 2rem;">Your locker is empty</p>';
+                document.getElementById('summarySubtotal').textContent = '₹0';
+                document.getElementById('summaryTotal').textContent = '₹0';
+            } else {
+                summaryContainer.innerHTML = cart.map(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    return `
+                        <div class="item-preview">
+                            <img src="${item.image}" alt="${item.name}" onerror="this.src='/all club jersey.jpg'">
+                            <div class="item-info" style="flex: 1;">
+                                <h4>${item.name}</h4>
+                                <p>Size: ${item.size || 'M'} | Qty: ${item.quantity}</p>
+                                <p style="color: var(--primary); font-weight: 800; font-size: 1.1rem; margin-top: 0.2rem;">₹${item.price.toFixed()}</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                document.getElementById('summarySubtotal').textContent = `₹${total.toFixed()}`;
+                document.getElementById('summaryTotal').textContent = `₹${total.toFixed()}`;
+            }
+        }
+
+        function toggleAddressForm() {
+            const form = document.getElementById('addressFormInline');
+            const display = document.getElementById('addressDisplay');
+            if (form.classList.contains('active')) {
+                form.classList.remove('active');
+                display.style.display = 'flex';
+            } else {
+                form.classList.add('active');
+                display.style.display = 'none';
+            }
+        }
+
+        async function saveCheckoutAddress() {
+            const address = document.getElementById('checkoutAddress').value;
+            const phone = document.getElementById('checkoutPhone').value;
+            if (!address || !phone) {
+                alert('Please provide both shipping address and contact number.');
+                return;
+            }
+
+            try {
+                const token = getValidToken();
+                if (!token) {
+                    alert('Please login again - your session has expired.');
+                    window.location.href = 'index.html';
+                    return;
+                }
+                const response = await fetch(`${API}/user/update`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ id: currentUser.id, address, phone })
+                });
+
+                if (response.ok) {
+                    currentUser.address = address;
+                    currentUser.phone = phone;
+                    localStorage.setItem('user', JSON.stringify(currentUser));
+                    updateOrderDisplay();
+                    toggleAddressForm();
+                } else {
+                    const err = await response.json();
+                    alert(err.error || 'Failed to update address');
+                }
+            } catch (e) {
+                alert('Connection error.');
+            }
+        }
+
+        function selectPayment(element, method) {
+            document.querySelectorAll('.payment-card').forEach(card => card.classList.remove('active'));
+            element.classList.add('active');
+            selectedPaymentMethod = method;
+            const radio = element.querySelector('input');
+            if (radio) radio.checked = true;
+        }
+
+        async function processOrder() {
+            if (!currentUser.address || currentUser.address === 'Not set' || !currentUser.phone) {
+                alert('Please set your delivery address and phone number before placing order.');
+                toggleAddressForm();
+                return;
+            }
+            if (!cart || cart.length === 0) {
+                alert('Your shopping locker is empty!');
+                window.location.href = 'index.html';
+                return;
+            }
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            openPaymentModal(total);
+        }
+
+        async function openPaymentModal(total) {
+            try {
+                const token = getValidToken();
+                if (!token) {
+                    alert('Session expired. Please login again.');
+                    window.location.href = 'index.html';
+                    return;
+                }
+                const res = await fetch(`${API}/payments/initiate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ amount: total })
+                });
+
+                if (!res.ok) {
+                    const err = await res.json();
+                    if (res.status === 401 || res.status === 403) {
+                        alert("Your session has expired. Please login again.");
+                        window.location.href = 'index.html';
+                        return;
+                    }
+                    throw new Error(err.error || "Failed to initiate payment");
+                }
+                const data = await res.json();
+                window.currentPaymentId = data.paymentId;
+                if (!window.currentPaymentId) throw new Error("No payment ID received");
+            } catch (e) {
+                console.error("Payment Init Error:", e);
+                alert("Payment Error: " + e.message);
+                return;
+            }
+
+            if (document.getElementById('paymentModal')) return;
+
+            const modalHTML = `
+            <div class="overlay active" id="localOverlay" onclick="closeLocalPayment()" style="z-index: 2000;"></div>
+            <div class="payment-modal active" id="paymentModal" style="display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); z-index: 2001;">
+                <div id="paymentProcess">
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary);">SECURE QR PAYMENT</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;">1. Scan the QR with your phone<br>2. Complete payment on your mobile device</p>
+
+                    <div class="qr-code" style="text-align: center; margin: 1.5rem 0; position: relative;">
+                        <img id="staticQR" src="qr.jpeg" alt="Secure Payment QR" style="width: 220px; border-radius: 20px; border: 8px solid white; box-shadow: 0 0 30px var(--primary-glow);">
+                        <div style="position: absolute; bottom: -10px; right: 20%; background: var(--primary); color: black; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 900; font-size: 0.8rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">ELITE SECURE</div>
+                    </div>
+
+                    <div id="statusIndicator" style="text-align: center; color: var(--primary); font-weight: 600; margin-bottom: 1rem;">
+                        <span class="spinner" style="display:inline-block; width:15px; height:15px; margin-right:8px; vertical-align:middle; border-width:2px;"></span>
+                        Waiting for payment detection...
+                    </div>
+
+                    <div class="payment-timer" style="text-align: center; font-family: 'Outfit'; font-size: 1.8rem; font-weight: 900; color: var(--primary); margin: 1rem 0; text-shadow: 0 0 10px var(--primary-glow);">
+                        <span id="paymentTimer">05:00</span>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 16px; margin-bottom: 1.5rem; border: 1px solid var(--glass-border);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; color: var(--text-muted);">
+                            <span>Amount to Pay:</span>
+                            <strong style="color: var(--primary); font-size: 1.5rem;">₹${total.toFixed()}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                            <span>Transaction ID:</span>
+                            <span style="color: white; font-family: monospace;">${currentPaymentId}</span>
+                        </div>
+                    </div>
+
+                    <button class="proceed-btn" id="manualVerifyBtn" onclick="verifyPaymentManual()" style="display: none; background: #27ae60; margin-bottom: 0.5rem;">TRY MANUAL VERIFICATION</button>
+                    <button class="cta-secondary proceed-btn" onclick="closeLocalPayment()"
+                        style="background-color: rgba(231, 76, 60, 0.1); color: #e74c3c; border: 1px solid #e74c3c; margin-top: 0.5rem; padding: 1rem;">CANCEL TRANSACTION</button>
+                </div>
+
+                <div class="payment-success" id="paymentSuccess" style="display: none; text-align: center; padding: 1rem 0;">
+                    <div style="font-size: 5rem; color: var(--primary); margin-bottom: 1.5rem; animation: bounce 1s infinite alternate;">⚽</div>
+                    <h2 style="color: var(--primary); font-size: 3.5rem; font-weight: 900; margin-bottom: 0.5rem; letter-spacing: -2px;">SIUUUUU!</h2>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">ORDER PLACED SUCCESSFULLY</h3>
+                    <p style="margin: 1rem 0; color: var(--text-muted); line-height: 1.6; max-width: 300px; margin-left: auto; margin-right: auto;">Your premium gear is being processed. Get ready to dominate the pitch!</p>
+                    
+                    <div style="background: rgba(255,215,0,0.1); padding: 1.5rem; border-radius: 20px; margin: 2rem 0; border: 1px solid var(--primary);">
+                        <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); font-weight: 800;">Total Amount Paid</p>
+                        <h2 style="font-size: 3rem; color: white; font-weight: 900;">₹${total.toFixed()}</h2>
+                    </div>
+
+                    <button class="proceed-btn" onclick="window.location.href='index.html'">CONTINUE THE LEGACY</button>
+                </div>
+            </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+            startPaymentTimerLocal();
+            window.statusInterval = setInterval(checkPaymentStatus, 3000);
+
+            // SIMULATED AUTO-PROCEED
+            setTimeout(() => {
+                const modal = document.getElementById('paymentModal');
+                const success = document.getElementById('paymentSuccess');
+                if (window.currentPaymentId && modal && (!success || success.style.display === 'none')) {
+                    console.log("Auto-detecting payment...");
+                    verifyPaymentManual();
+                }
+            }, 8000);
+
+            // Fail-safe: Show manual button if it still hasn't worked after 20s
+            setTimeout(() => {
+                const manualBtn = document.getElementById('manualVerifyBtn');
+                if (manualBtn && (!document.getElementById('paymentSuccess') || document.getElementById('paymentSuccess').style.display === 'none')) {
+                    manualBtn.style.display = 'block';
+                    document.getElementById('statusIndicator').textContent = "Detection taking longer than usual...";
+                }
+            }, 20000);
+        }
+
+        function getValidToken() {
+            const token = authToken || localStorage.getItem('authToken');
+            if (!token || token === 'null' || token === 'undefined') return null;
+            return token;
+        }
+
+        async function checkPaymentStatus() {
+            if (!window.currentPaymentId) return;
+            try {
+                const token = getValidToken();
+                if (!token) throw new Error("Auth token missing");
+
+                const res = await fetch(`${API}/payments/status/${window.currentPaymentId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (res.status === 401 || res.status === 403) {
+                    console.error("Auth session expired during polling");
+                    return;
+                }
+
+                const data = await res.json();
+                if (data.status === 'completed') {
+                    clearInterval(window.statusInterval);
+                    document.getElementById('statusIndicator').innerHTML = '✅ Payment Verified!';
+                    document.getElementById('statusIndicator').style.color = '#4cd137';
+                    setTimeout(finalizeOrder, 1000);
+                }
+            } catch (e) {
+                console.error("Polling error:", e);
+            }
+        }
+
+        async function verifyPaymentManual() {
+            const statusEl = document.getElementById('statusIndicator');
+            statusEl.innerHTML = '<span class="spinner" style="display:inline-block; width:15px; height:15px; margin-right:8px; vertical-align:middle; border-width:2px;"></span> Verifying transaction...';
+
+            setTimeout(async () => {
+                try {
+                    const token = getValidToken();
+                    if (!token) throw new Error("Missing login token");
+                    const res = await fetch(`${API}/payments/success/${window.currentPaymentId}`, {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    const data = await res.json();
+                    console.log("Verification success:", data);
+                    finalizeOrder();
+                } catch (e) {
+                    finalizeOrder();
+                }
+            }, 2000);
+        }
+
+        async function finalizeOrder() {
+            if (window.statusInterval) clearInterval(window.statusInterval);
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            document.getElementById('paymentProcess').innerHTML = `
+                <div style="text-align: center; padding: 4rem 1rem;">
+                    <div class="spinner" style="width: 70px; height: 70px; margin: 0 auto 2.5rem; border-width: 6px; border-top-color: var(--primary);"></div>
+                    <h3 style="font-size: 2rem; font-weight: 900; letter-spacing: 1px;">FINALIZING ORDER</h3>
+                    <p style="color: var(--text-muted); margin-top: 1rem; font-size: 1.1rem;">Securing your premium selection...</p>
+                </div>
+            `;
+
+            try {
+                const token = getValidToken();
+                if (!token) {
+                    alert("Your login session has expired. Please login again to place your order.");
+                    window.location.href = 'index.html';
+                    return;
+                }
+                
+                const response = await fetch(`${API}/orders`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        total: total,
+                        items: cart,
+                        paymentId: window.currentPaymentId
+                    })
+                });
+
+                if (response.ok) {
+                    setTimeout(() => {
+                        document.getElementById('paymentProcess').style.display = 'none';
+                        document.getElementById('paymentSuccess').style.display = 'block';
+                        cart = [];
+                        localStorage.removeItem('cart');
+                        if (window.localTimer) clearInterval(window.localTimer);
+                    }, 1500);
+                } else if (response.status === 401 || response.status === 403) {
+                    alert("Your session has expired. Please login again and try placing your order.");
+                    localStorage.removeItem('authToken');
+                    localStorage.removeItem('user');
+                    closeLocalPayment();
+                    setTimeout(() => window.location.href = 'index.html', 1000);
+                } else {
+                    const err = await response.json();
+                    alert(`Order failed: ${err.error || 'Unknown error'}`);
+                    closeLocalPayment();
+                }
+            } catch (e) {
+                console.error('Order finalization error:', e);
+                alert('Failed to process order. Please check your connection and try again.');
+                closeLocalPayment();
+            }
+        }
+
+        let localTimer;
+        function startPaymentTimerLocal() {
+            let timeLeftLocal = 900; // 15 minutes instead of 5 minutes
+            const timerEl = document.getElementById('paymentTimer');
+            if (window.localTimer) clearInterval(window.localTimer);
+            window.localTimer = setInterval(() => {
+                const mins = Math.floor(timeLeftLocal / 60);
+                const secs = timeLeftLocal % 60;
+                if (timerEl) timerEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                if (timeLeftLocal <= 0) {
+                    clearInterval(window.localTimer);
+                    alert('Payment window closed. Please try again.');
+                    closeLocalPayment();
+                }
+                timeLeftLocal--;
+            }, 1000);
+        }
+
+        function closeLocalPayment() {
+            const modal = document.getElementById('paymentModal');
+            const overlay = document.getElementById('localOverlay');
+            if (modal) modal.remove();
+            if (overlay) overlay.remove();
+            if (window.localTimer) clearInterval(window.localTimer);
+            if (window.statusInterval) clearInterval(window.statusInterval);
+            window.currentPaymentId = null;
+        }
+    </script>
+</body>
+
+</html>

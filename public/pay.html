@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Secure Payment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffd700;
+            --bg: #0a0a0a;
+            --card: #141414;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            background: var(--card);
+            padding: 2.5rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .amount {
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 1rem 0;
+            color: var(--primary);
+        }
+
+        .txn-id {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .pay-btn {
+            background: var(--primary);
+            color: black;
+            border: none;
+            width: 100%;
+            padding: 1.2rem;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pay-btn:active {
+            transform: scale(0.95);
+        }
+
+        .success {
+            display: none;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: #4cd137;
+            margin-bottom: 1rem;
+        }
+
+        .loader {
+            display: none;
+            border: 4px solid #333;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="paymentForm">
+            <div class="logo">VeePoo19<span>SHOP</span></div>
+            <p style="color: #888;">Secure Payment Request</p>
+            <div class="amount" id="displayAmount">₹0</div>
+            <div class="txn-id" id="displayId">Loading...</div>
+
+            <button class="pay-btn" id="payBtn" onclick="executePayment()">Confirm & Pay</button>
+            <div class="loader" id="loader"></div>
+
+            <p style="font-size: 0.7rem; color: #555; margin-top: 2rem;">
+                🔒 SSL Encrypted & Verified Transaction
+            </p>
+        </div>
+
+        <div class="success" id="successScreen">
+            <div class="success-icon">✓</div>
+            <h2>Payment Successful!</h2>
+            <p style="color: #888;">You can now check your laptop/desktop for the order confirmation.</p>
+            <p style="margin-top: 2rem; color: var(--primary); font-weight: 700;">SIUUUUUU!</p>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const paymentId = params.get('id');
+        const amount = params.get('am');
+
+        if (paymentId) {
+            document.getElementById('displayId').textContent = 'Ref: ' + paymentId;
+            document.getElementById('displayAmount').textContent = '₹' + amount;
+        }
+
+        async function executePayment() {
+            const btn = document.getElementById('payBtn');
+            const loader = document.getElementById('loader');
+
+            btn.style.display = 'none';
+            loader.style.display = 'block';
+
+            try {
+                const response = await fetch(`/api/payments/success/${paymentId}`, {
+                    method: 'POST'
+                });
+
+                if (response.ok) {
+                    setTimeout(() => {
+                        document.getElementById('paymentForm').style.display = 'none';
+                        document.getElementById('successScreen').style.display = 'block';
+                    }, 1500);
+                } else {
+                    alert('Payment failed. Try again.');
+                    btn.style.display = 'block';
+                    loader.style.display = 'none';
+                }
+            } catch (e) {
+                alert('Connection error');
+                btn.style.display = 'block';
+                loader.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>

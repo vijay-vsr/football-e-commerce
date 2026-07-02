@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="VeePoo19 Sports Shop - The Ultimate Elite Detail" />
+    <title>VeePoo19 Elite | Product Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=elite_premium">
+    <style>
+        .product-page-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .back-nav {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-weight: 600;
+            transition: var(--transition);
+            width: fit-content;
+        }
+
+        .back-nav:hover {
+            color: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 40px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+        }
+
+        @media (max-width: 968px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1.5rem;
+            }
+        }
+
+        .main-product-image {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
+            /* Elite AI Enhancement */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            filter: contrast(1.05) saturate(1.08) brightness(1.02) drop-shadow(0 0 10px rgba(255, 215, 0, 0.1));
+        }
+
+        .main-product-image:hover {
+            transform: scale(1.02);
+            filter: contrast(1.1) saturate(1.15) brightness(1.05) drop-shadow(0 0 20px rgba(255, 215, 0, 0.2));
+        }
+
+        .info-panel h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .price-tag {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .description {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .size-selector {
+            margin-bottom: 2.5rem;
+        }
+
+        .size-selector h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .size-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .size-btn {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .size-btn:hover {
+            border-color: var(--primary);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .size-btn.active {
+            background: var(--primary);
+            color: black;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .add-to-cart-big {
+            flex: 2;
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 900;
+            background: var(--primary);
+            color: black;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .add-to-cart-big:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--primary-glow);
+        }
+
+        .buy-now {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            font-weight: 900;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .buy-now:hover {
+            background: white;
+            color: black;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .product-specs {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .spec-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+        }
+
+        .spec-card i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .spec-card span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .spec-card p {
+            font-weight: 700;
+            margin-top: 0.2rem;
+        }
+
+        /* Loading Spinner */
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--glass);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="custom-cursor">
+        <div class="antenna"></div>
+        <div class="cursor-internal"></div>
+        <div class="cursor-internal-wheels"></div>
+    </div>
+    <div id="cursor-glow"></div>
+    <div id="elite-loader">
+        <div class="loader-content">
+            <h1 class="loader-logo">VeePoo19</h1>
+            <div class="loader-line"></div>
+            <p>DETAILS OF GREATNESS</p>
+        </div>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <h1 style="cursor: pointer;" onclick="window.location.href='index.html'">VeePoo19 <span
+                        style="font-size: 1rem; color: var(--primary); letter-spacing: 4px; border-left: 2px solid var(--primary); padding-left: 1rem;">ELITE
+                        SHOP</span></h1>
+                <div class="user-profile">
+                    <div class="cart-counter" onclick="window.location.href='index.html?showCart=true'">
+                        🛒 <span id="cartCount">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="product-page-container">
+        <div class="back-nav" onclick="window.location.href='index.html'">
+            ← BACK TO ALL JERSEYS
+        </div>
+
+        <div class="detail-grid" id="productDetail">
+            <!-- Content will be injected by JavaScript -->
+            <div style="grid-column: 1 / -1; text-align: center; padding: 5rem;">
+                <p>Loading greatness...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=elite"></script>
+    <script>
+        // Override or extend script.js functionality for this specific page
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id');
+
+            if (!productId) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/products`);
+                const products = await response.json();
+                const product = products.find(p => p.id == productId);
+
+                if (!product) {
+                    document.getElementById('productDetail').innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 5rem;">
+                            <h2>Jersey Not Found</h2>
+                            <p>The sought legacy item does not exist in our vaults.</p>
+                            <button class="cta-primary" style="margin-top: 2rem" onclick="window.location.href='index.html'">Return to Shop</button>
+                        </div>
+                    `;
+                    return;
+                }
+
+                renderProductPage(product);
+                updatePageCartCount();
+
+                // Hide loader
+                setTimeout(() => {
+                    document.body.classList.add('loaded');
+                }, 800);
+
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            }
+        });
+
+        function renderProductPage(product) {
+            const container = document.getElementById('productDetail');
+            const sizes = (product.sizes || 'S,M,L,XL,XXL').split(',');
+
+            container.innerHTML = `
+                <div class="image-panel">
+                    <img src="${product.image}" alt="${product.name}" class="main-product-image" onerror="this.src='https://via.placeholder.com/600x600?text=No+Image'">
+                </div>
+                <div class="info-panel">
+                    <span class="badge">${product.category?.toUpperCase() || 'OFFICIAL'} EDITION</span>
+                    <h1>${product.name}</h1>
+                    <span class="price-tag">₹${product.price}</span>
+                    
+                    <div class="rating" style="color: var(--primary); margin-bottom: 2rem; font-size: 1.2rem;">
+                        ⭐⭐⭐⭐⭐ <span style="color: var(--text-muted); font-size: 0.9rem; margin-left: 0.5rem;">(4.9/5 from 2,800+ Fans)</span>
+                    </div>
+
+                    <p class="description">
+                        ${product.description || `The definitive ${product.name} crafted with ultra-breathable Aero-Ready technology. Worn by legends, designed for the elite. Features heat-applied club crest and moisture-wicking fabric for peak performance on and off the pitch.`}
+                    </p>
+
+                    <div class="size-selector">
+                        <h3>Select Your Armor (Size)</h3>
+                        <div class="size-options">
+                            ${sizes.map(s => `
+                                <div class="size-btn ${s.trim() === 'M' ? 'active' : ''}" onclick="selectPageSize(this, '${s.trim()}')">${s.trim()}</div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="add-to-cart-big" onclick="addToCartFromPage()">Add To Locker</button>
+                        <button class="buy-now" onclick="buyNow()">Buy Now</button>
+                    </div>
+
+                    <div class="product-specs">
+                        <div class="spec-card">
+                            <i>🛡️</i>
+                            <span>Material</span>
+                            <p>Pro-Lycra</p>
+                        </div>
+                        <div class="spec-card">
+                            <i>💨</i>
+                            <span>Fit</span>
+                            <p>Athletic</p>
+                        </div>
+                        <div class="spec-card">
+                            <i>✨</i>
+                            <span>Finish</span>
+                            <p>Authentic</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Store current product and selected size globally on this page
+            window.currentPageProduct = product;
+            window.selectedPageSize = 'M';
+        }
+
+        function selectPageSize(element, size) {
+            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            window.selectedPageSize = size;
+        }
+
+        function addToCartFromPage(silent = false) {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (!user) {
+                alert('Please login to join the Elite Club and start shopping!');
+                window.location.href = 'index.html';
+                return false;
+            }
+
+            if (typeof addToCartWithDetails === 'function') {
+                addToCartWithDetails(window.currentPageProduct, window.selectedPageSize, silent);
+                updatePageCartCount();
+                return true;
+            }
+            return false;
+        }
+
+        function updatePageCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            const el = document.getElementById('cartCount');
+            if (el) el.textContent = count;
+        }
+
+        function buyNow() {
+            if (addToCartFromPage(true)) {
+                window.location.href = 'checkout.html';
+            }
+        }
+    </script>
+</body>
+
+</html>

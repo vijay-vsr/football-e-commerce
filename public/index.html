@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="VeePoo19 Sports Shop - The Ultimate Elite Destination for Authentic Performance Gear." />
+    <title>VeePoo19 | ELITE PREMIUM SHOP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;800&family=Outfit:wght@400;700;900&family=Inter:wght@400;600;800&family=Rye&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=elite_premium">
+</head>
+
+<body>
+    <div id="custom-cursor">
+        <div class="antenna"></div>
+        <div class="cursor-internal"></div>
+        <div class="cursor-internal-wheels"></div>
+    </div>
+    <div id="cursor-glow"></div>
+
+    <!-- Luxury Loading Page -->
+    <div id="elite-loader"><Kbd></Kbd>
+        <div class="loader-content">
+            <h1 class="loader-logo">VeePoo19</h1>
+            <div class="loader-line"></div>
+            <p>EXPERIENCE EXCELLENCE</p>
+        </div>
+    </div>
+
+    <!-- Login/Signup Page -->
+    <div class="auth-container" id="authPage">
+        <div class="auth-box">
+            <div class="auth-logo">
+                <h1>VeePoo19<span>SHOP</span></h1>
+                <p>OWN THE BEST GEAR</p>
+            </div>
+
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="loginTab" onclick="switchAuthTab('login')">Login</div>
+                <div class="auth-tab" id="signupTab" onclick="switchAuthTab('signup')">Sign Up</div>
+            </div>
+
+            <div id="loginForm">
+                <h2>Welcome Back</h2>
+                <input type="email" id="loginEmail" placeholder="Email Address" />
+                <input type="password" id="loginPassword" placeholder="Password" />
+                <button onclick="login()">Login</button>
+                <div class="auth-footer">
+                    <p><a href="#" onclick="alert('Password reset link would be sent to your email')">Forgot
+                            password?</a></p>
+                </div>
+            </div>
+
+            <div id="signupForm" style="display: none;">
+                <h2>Create Account</h2>
+                <input type="text" id="signupName" placeholder="Full Name" />
+                <input type="email" id="signupEmail" placeholder="Email Address" />
+                <input type="password" id="signupPassword" placeholder="Password" />
+                <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" />
+                <button onclick="signup()">Sign Up</button>
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" onclick="switchAuthTab('login')">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verification Page (hidden initially) -->
+    <div class="auth-container" id="verificationPage" style="display: none;">
+        <div class="verification-box">
+            <div class="verification-icon">✉️</div>
+            <h2>Verify Your Email</h2>
+            <p>We've sent a verification link to <span id="userEmailDisplay"></span></p>
+            <p>Please check your email and click the link to verify your account.</p>
+            <button onclick="simulateEmailVerification()">I've Verified My Email</button>
+            <div class="auth-footer">
+                <p>Didn't receive the email? <a href="#" onclick="resendVerificationEmail()">Resend</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App (hidden initially) -->
+    <div class="main-app" id="mainApp">
+        <header>
+            <div class="header-content">
+                <h1 style="display: flex; align-items: center; gap: 0.5rem;">VeePoo19 <span
+                        style="font-size: 1rem; color: var(--primary); letter-spacing: 4px; border-left: 2px solid var(--primary); padding-left: 1rem;">ELITE
+                        SHOP</span></h1>
+                <p>OFFICIAL PERFORMANCE MERCHANDISE</p>
+                <div class="top-bar">
+                    <div class="search-container">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="searchBar" placeholder="Search for YOUR WARDROBE..." />
+                    </div>
+                    <div class="user-profile" onclick="showProfile()">
+                        <div class="user-avatar" id="userAvatar">U</div>
+                        <div class="cart-counter" id="cartButton">
+                            🛒 Cart: <span id="cartCount">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero glass-panel">
+            <div class="hero-content">
+                <span class="badge">EST. 2002 | LEGACY</span>
+                <h1>LONG LIVE THE KING</h1>
+                <p>Step into the greatness. Every stitch, every fiber, crafted for those who believe in hard work,
+                    dedication, and the relentless pursuit of perfection. SIUUU!
+                </p>
+                <div class="hero-buttons">
+                    <button class="cta-primary"
+                        onclick="window.scrollTo({top: document.getElementById('productGrid').offsetTop - 100, behavior: 'smooth'})">EXPLORE
+                        THE LEGACY</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="PR.webp" alt="CR7 Premium Jersey">
+                <!-- Elite Premium Decorations -->
+                <div class="hero-decorations">
+                    <div class="decor-card stats">
+                        <span class="decor-icon">✨</span>
+                        <div>
+                            <h4>AUTHENTIC</h4>
+                            <p>Premium Quality</p>
+                        </div>
+                    </div>
+                    <div class="decor-card shipping">
+                        <span class="decor-icon">🌍</span>
+                        <div>
+                            <h4>GLOBAL</h4>
+                            <p>Fast Delivery</p>
+                        </div>
+                    </div>
+                    <div class="decor-card signature">
+                        <div class="signature-text">CR7</div>
+                        <div>
+                            <h4>CERTIFIED</h4>
+                            <p>Official Store</p>
+                        </div>
+                    </div>
+                    <!-- Stylized Signature -->
+                    <div class="cr7-signature">Cristiano Ronaldo</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="filters scroll-container">
+            <button class="active" onclick="filterCategory('all')">All jerseys</button>
+            <button onclick="filterCategory('home')">home-jerseys</button>
+            <button onclick="filterCategory('away')">away-jerseys</button>
+            <button onclick="filterCategory('international')">international-jerseys</button>
+            <button onclick="filterCategory('club')">all club-jersey</button>
+        </section>
+
+        <main class="scroll-container">
+            <div class="product-grid" id="productGrid">
+                <!-- Product cards will be loaded here dynamically -->
+                <div class="spinner"></div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>📞 +91 9994385640</p>
+                    <p>✉️ vgvijay2007vsr@gmail.com</p>
+                    <div class="social-icons">
+                        <a href="#">📱</a>
+                        <a href="#">📘</a>
+                        <a href="#">📸</a>
+                        <a href="#">🐦</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Our Locations</h3>
+                    <p>🏢 Head Office: 123 Green Lane, Bangalore</p>
+                    <p>🏪 Store: 777 CR7 Plaza, Mumbai</p>
+                    <p>🏪 Store: 7 soccer street, Delhi</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#" onclick="alert('About Us page would go here')">About Us</a>
+                    <a href="#" onclick="alert('FAQ page would go here')">FAQs</a>
+                    <a href="#" onclick="alert('Privacy Policy page would go here')">Privacy Policy</a>
+                    <a href="#" onclick="alert('Terms page would go here')">Terms & Conditions</a>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 VeePoo19. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+
+
+    <!-- Cart Sidebar -->
+    <div class="overlay" id="overlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="paymentModal">
+        <div id="paymentProcess">
+            <h2>Complete Your Payment</h2>
+            <p>Scan the QR code below to pay using UPI, Paytm, or other payment apps</p>
+
+            <div class="qr-code">
+                <!-- QR code image will be inserted here -->
+            </div>
+
+            <div class="payment-timer">
+                Time remaining: <span id="paymentTimer">05:00</span>
+            </div>
+
+            <p>Order Total: <strong id="paymentAmount">₹0</strong></p>
+
+            <div class="payment-options">
+                <img src="qr.jpeg" alt="Google Pay" class="payment-option">
+                <img src="qr.jpeg" alt="Paytm" class="payment-option">
+                <img src="qr.jpeg" alt="PhonePe" class="payment-option">
+                <img src="qr.jpeg" alt="UPI" class="payment-option">
+            </div>
+
+            <button class="close-payment" onclick="completePayment()">I've Made the Payment</button>
+            <button class="close-payment" onclick="closePayment()"
+                style="background-color: #f44336; margin-top: 0.5rem;">Cancel Payment</button>
+        </div>
+
+        <div class="payment-success" id="paymentSuccess">
+            <!-- Success content will be added dynamically -->
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="profile-modal" id="profileModal">
+        <div class="profile-header">
+            <h2>My Profile</h2>
+            <button class="close-profile" onclick="hideProfile()">×</button>
+        </div>
+
+        <div class="profile-info">
+            <p><strong>Name:</strong> <span id="profileName">User Name</span></p>
+            <p><strong>Email:</strong> <span id="profileEmail">user@example.com</span></p>
+            <p><strong>Address:</strong> <span id="profileAddress">Not set</span></p>
+            <p><strong>Phone:</strong> <span id="profilePhone">Not set</span></p>
+        </div>
+
+        <div class="order-history-section">
+            <div class="section-header" onclick="toggleOrderHistory()">
+                <h3>Order History</h3>
+                <span id="orderChevron">▼</span>
+            </div>
+            <div class="order-list" id="orderList" style="display: none;">
+                <p class="no-orders text-muted">Loading orders...</p>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <button class="profile-btn admin-btn" id="adminPanelBtn" onclick="showAdminPanel()"
+                style="display: none;">👑 Owner Dashboard</button>
+            <button class="profile-btn edit-profile" onclick="showAddressForm()">Edit Address</button>
+            <button class="profile-btn logout" onclick="logout()">Logout</button>
+        </div>
+
+        <div class="address-form" id="addressForm">
+            <h3>Update Address</h3>
+            <input type="text" id="addressLine1" placeholder="Address (Line 1, Line 2, City, State, Pin)">
+            <input type="text" id="addressPhone" placeholder="Phone Number">
+            <button class="profile-btn edit-profile" onclick="updateAddress()">Save Address</button>
+            <button class="profile-btn logout" onclick="hideAddressForm()" style="margin-top: 0.5rem;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Admin/Owner Dashboard Modal -->
+    <div class="profile-modal" id="adminModal" style="max-width: 800px;">
+        <div class="profile-header">
+            <h2>👑 Owner Dashboard</h2>
+            <button class="close-profile" onclick="hideAdminPanel()">×</button>
+        </div>
+
+        <div class="admin-stats" style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+            <div class="glass-panel" style="flex: 1; padding: 1rem; text-align: center;">
+                <h4 style="color: var(--text-muted);">Total Customers</h4>
+                <p id="totalUserCount" style="font-size: 2rem; font-weight: 800; color: var(--accent);">0</p>
+            </div>
+            <div class="glass-panel" style="flex: 1; padding: 1rem; text-align: center;">
+                <h4 style="color: var(--text-muted);">Total Orders</h4>
+                <p id="totalOrderCount" style="font-size: 2rem; font-weight: 800; color: var(--primary);">0</p>
+            </div>
+        </div>
+
+        <div class="admin-tabs" style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+            <button class="auth-tab active" onclick="switchAdminTab('users')">Customers</button>
+            <button class="auth-tab" onclick="switchAdminTab('orders')">Orders</button>
+            <button class="auth-tab" onclick="switchAdminTab('products')">Add Product</button>
+        </div>
+
+        <div id="adminUsersSection">
+            <h3>Registered Customers</h3>
+            <div class="user-table-container"
+                style="overflow-x: auto; margin-top: 1rem; background: rgba(0,0,0,0.2); border-radius: 12px; padding: 1rem;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--glass-border);">
+                            <th style="padding: 1rem;">Name</th>
+                            <th style="padding: 1rem;">Email</th>
+                            <th style="padding: 1rem;">Joined Date</th>
+                            <th style="padding: 1rem;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="adminOrdersSection" style="display: none;">
+            <h3>Recent Orders</h3>
+            <div class="user-table-container"
+                style="overflow-x: auto; margin-top: 1rem; background: rgba(0,0,0,0.2); border-radius: 12px; padding: 1rem;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--glass-border);">
+                            <th style="padding: 1rem;">Order ID</th>
+                            <th style="padding: 1rem;">Customer</th>
+                            <th style="padding: 1rem;">Total</th>
+                            <th style="padding: 1rem;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orderTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="adminAddProductSection" style="display: none;">
+            <h3>Add New Jersey</h3>
+            <div class="glass-panel" style="padding: 2rem; border-radius: 16px; margin-top: 1rem;">
+                <input type="text" id="prodName" placeholder="Product Name (e.g. REAL MADRID HOME)"
+                    style="margin-bottom: 1rem;">
+                <input type="number" id="prodPrice" placeholder="Price (INR)" style="margin-bottom: 1rem;">
+                <select id="prodCategory"
+                    style="margin-bottom: 1rem; width: 100%; padding: 1rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: white; border-radius: 12px;">
+                    <option value="home">Home Jersey</option>
+                    <option value="away">Away Jersey</option>
+                    <option value="international">International</option>
+                    <option value="club">Club Package</option>
+                </select>
+                <textarea id="prodDesc" placeholder="Product Description"
+                    style="margin-bottom: 1rem; width: 100%; padding: 1rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: white; border-radius: 12px; height: 100px;"></textarea>
+                <input type="file" id="prodImage" accept="image/*" style="margin-bottom: 1rem;">
+                <button class="profile-btn edit-profile" onclick="addProduct()">Save Product</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=elite"></script>
+</body>
+
+</html>
